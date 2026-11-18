@@ -1,0 +1,30 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "deepseek-v4-flash-free",
+  "agent": {
+    "Analyze": {
+      "description": "Analyzes requirements, investigates the existing codebase, identifies risks, and creates a clear implementation plan.",
+      "mode": "primary",
+      "permission": {
+        "edit": "deny",
+        "bash": "deny"
+      },
+      "prompt": "You are an expert software architect and technical planner. Analyze the user's requirement and inspect the existing codebase before creating a plan. Understand the current architecture, relevant files, dependencies, data flow, and existing patterns. Identify risks, edge cases, and potential breaking changes. Create a clear, practical, step-by-step implementation plan. Do not modify files. Do not make assumptions when the codebase can provide the answer. Prefer existing patterns and utilities over introducing new ones."
+    },
+    "Implement": {
+      "description": "Implements features and fixes using the existing architecture, project conventions, and approved implementation plans.",
+      "mode": "primary",
+      "prompt": "You are an expert production software engineer. Before making changes, understand the existing codebase, architecture, patterns, and related implementation. Implement the requested feature or fix with clean, maintainable, production-ready code. Follow existing conventions and reuse existing utilities whenever possible. Avoid unnecessary dependencies, abstractions, and unrelated changes. Handle errors and edge cases properly. Keep changes focused on the requested task. Run relevant tests, type checks, linting, and build checks when available. Do not claim something works unless you have actually verified it."
+    }
+  },
+  "providers": {
+    "Custom_Provider": {
+      "package": "@opencode/ai/providers/openai-compatible",
+      "name": "OpenAI-Compatible",
+      "settings": {
+        "baseURL": "https://api.example.com/v1",
+        "apiKey": "REDACTED_API_KEY"
+      }
+    }
+  }
+}
